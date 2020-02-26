@@ -37,6 +37,10 @@
       filter:  blur(var(--blur));
     }
 
+    h1{
+      color: var(--base);
+    }
+
     body {
       text-align: center;
       background: #193549;
@@ -56,6 +60,18 @@
   </style>
 
   <script>
+    //this is a node list so array methods don't work
+    const inputs = document.querySelectorAll('.controls input');
+
+    function handleUpdate(){
+      const suffix=this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
+      //console.log(suffix);
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
   </script>
 
 </body>
